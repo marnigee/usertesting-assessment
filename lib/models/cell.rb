@@ -8,10 +8,10 @@ class Cell
   end
 
   def rebirth
-    alive = true
+    @alive = true
   end
 
   def kill
-    alive = false
+    @alive = false
   end
 end

@@ -24,45 +24,74 @@ describe CellNeighbors do
     ]
   }
   let(:all_game_cells) { neighbors << center_cell }
-  let(:cell_neighbors) { 
+  let(:cell_neighbors) {
     CellNeighbors.new(
       cells: all_game_cells
     )
   }
 
-  it 'gets eight neighbors' do
-    expect(cell_neighbors.neighbors(center_cell).size).to eq(8)
+  context 'missing neighbors' do
+    it 'it returns nil if there is no neighbor' do
+      cell_without_all_neighbors = left
+      expect(
+        cell_neighbors.neighbors(cell_without_all_neighbors)
+      ).to include(nil)
+    end
   end
 
-  it 'gets left neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(left)
-  end
+  context 'all neighbors' do
+    it 'gets eight neighbors' do
+      expect(
+        cell_neighbors.neighbors(center_cell).size
+      ).to eq(8)
+    end
 
-  it 'gets right neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(right)
-  end
+    it 'gets left neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(left)
+    end
 
-  it 'gets up neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(up)
-  end
+    it 'gets right neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(right)
+    end
 
-  it 'gets down neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(down)
-  end
+    it 'gets up neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(up)
+    end
 
-  it 'gets diagonal_right_down neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(diagonal_right_down)
-  end
+    it 'gets down neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(down)
+    end
 
-  it 'gets down diagonal_right_up neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(diagonal_right_up)
-  end
+    it 'gets diagonal_right_down neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(diagonal_right_down)
+    end
 
-  it 'gets diagonal_left_down neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(diagonal_left_down)
-  end
+    it 'gets down diagonal_right_up neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(diagonal_right_up)
+    end
 
-  it 'gets diagonal_left_up neighbor' do
-    expect(cell_neighbors.neighbors(center_cell)).to include(diagonal_left_up)
+    it 'gets diagonal_left_down neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(diagonal_left_down)
+    end
+
+    it 'gets diagonal_left_up neighbor' do
+      expect(
+        cell_neighbors.neighbors(center_cell)
+      ).to include(diagonal_left_up)
+    end
   end
 end

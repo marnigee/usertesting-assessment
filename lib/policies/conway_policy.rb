@@ -1,14 +1,22 @@
 class ConwayPolicy
-  def process(cell:, neighbors:)
+  def evaluate_cells(cell:, neighbors:)
+    @cells_to_rebirth ||= []
+    @cells_to_kill ||= []
     count = live_neighbor_count(neighbors)
     if !cell.alive
-      cell.rebirth if count === 3
+      @cells_to_rebirth << cell if count == 3
     else
-      cell.kill if count < 2 || count > 3
+      @cells_to_kill << cell if count < 2 || count > 3
     end
   end
 
+  def update_cells
+    @cells_to_rebirth.map(&:rebirth)
+    @cells_to_kill.map(&:kill)
+  end
+
   def live_neighbor_count(neighbors)
-    neighbors.select { |n| n.alive }.size
+    return 0 if neighbors.nil?
+    neighbors.select { |n| n&.alive }.size
   end
 end

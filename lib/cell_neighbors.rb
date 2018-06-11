@@ -21,34 +21,70 @@ class CellNeighbors
   end
 
   def left_neighbor(center_cell)
-    cells.select { |c| (center_cell.x_coord == c.x_coord - 1) && (center_cell.y_coord == c.y_coord) }.first
+    neighbor_array = cells.select do |c|
+      (center_cell.x_coord == c.x_coord - 1) &&
+        (center_cell.y_coord == c.y_coord)
+    end
+    neighbor_array.first
   end
 
   def right_neighbor(center_cell)
-    cells.select { |c| (center_cell.x_coord == c.x_coord + 1) && (center_cell.y_coord == c.y_coord) }.first
+    neighbor_array = cells.select do |c|
+      (center_cell.x_coord == c.x_coord + 1) &&
+        (center_cell.y_coord == c.y_coord)
+    end
+    neighbor_array.first
   end
 
   def up_neighbor(center_cell)
-    cells.select { |c| (center_cell.x_coord == c.x_coord) && (center_cell.y_coord == c.y_coord + 1) }.first
+    neighbor_array = cells.select do |c|
+      (center_cell.x_coord == c.x_coord) &&
+        (center_cell.y_coord == c.y_coord + 1)
+    end
+    neighbor_array.first
   end
 
   def down_neighbor(center_cell)
-    cells.select { |c| (center_cell.x_coord == c.x_coord) && (center_cell.y_coord == c.y_coord - 1) }.first
+    neighbor_array = cells.select do |c|
+      (center_cell.x_coord == c.x_coord) &&
+        (center_cell.y_coord == c.y_coord - 1)
+    end
+    neighbor_array.first
   end
 
   def diagonal_left_up_neighbor(center_cell)
-    cells.select { |c| (left_neighbor(center_cell).x_coord == c.x_coord) && (left_neighbor(center_cell).y_coord == c.y_coord + 1) }.first
+    return nil if left_neighbor(center_cell).nil?
+    neighbor_array = cells.select do |c|
+      (left_neighbor(center_cell).x_coord == c.x_coord) &&
+        (left_neighbor(center_cell).y_coord == c.y_coord + 1)
+    end
+    neighbor_array.first
   end
 
   def diagonal_right_up_neighbor(center_cell)
-    cells.select { |c| (right_neighbor(center_cell).x_coord == c.x_coord) && (right_neighbor(center_cell).y_coord == c.y_coord + 1) }.first
+    return nil if right_neighbor(center_cell).nil?
+    neighbor_array = cells.select do |c|
+      (right_neighbor(center_cell).x_coord == c.x_coord) &&
+        (right_neighbor(center_cell).y_coord == c.y_coord + 1)
+    end
+    neighbor_array.first
   end
 
   def diagonal_left_down_neighbor(center_cell)
-    cells.select { |c| (left_neighbor(center_cell).x_coord == c.x_coord) && (left_neighbor(center_cell).y_coord == c.y_coord - 1) }.first
+    return nil if left_neighbor(center_cell).nil?
+    neighbor_array = cells.select do |c|
+      (left_neighbor(center_cell).x_coord == c.x_coord) &&
+        (left_neighbor(center_cell).y_coord == c.y_coord - 1)
+    end
+    neighbor_array.first
   end
 
   def diagonal_right_down_neighbor(center_cell)
-    cells.select { |c| (right_neighbor(center_cell).x_coord == c.x_coord) && (right_neighbor(center_cell).y_coord == c.y_coord - 1) }.first
+    return nil if right_neighbor(center_cell).nil?
+    neighbor_array = cells.select do |c|
+      (right_neighbor(center_cell).x_coord == c.x_coord) &&
+        (right_neighbor(center_cell).y_coord == c.y_coord - 1)
+    end
+    neighbor_array.first
   end
 end
